@@ -6,16 +6,15 @@ from sklearn.datasets import fetch_20newsgroups
 
 n_samples = 2000
 n_features = 1000
-<<<<<<< HEAD
+
 n_topics = 1
-=======
-n_topics = 10
->>>>>>> fe2a42c738d3b38bf58eec4c58a8d726d05a3986
+
 n_top_words = 20
 cut = []
 
 def print_top_words(model, feature_names, n_top_words):
     for topic_idx, topic in enumerate(model.components_):
+        print(topic.argsort())
         print("Topic #%d:" % topic_idx)
         print(" ".join([feature_names[i]
                         for i in topic.argsort()[:-n_top_words - 1:-1]]))
@@ -64,12 +63,10 @@ print("Fitting the NMF model with tf-idf features,"
       "n_samples=%d and n_features=%d..."
       % (n_samples, n_features))
 t0 = time()
+
+
 nmf = NMF(n_components=n_topics, random_state=1, alpha=.1, l1_ratio=.5).fit(tfidf)
-<<<<<<< HEAD
-#exit()
-=======
-exit()
->>>>>>> fe2a42c738d3b38bf58eec4c58a8d726d05a3986
+
 print("done in %0.3fs." % (time() - t0))
 
 print("\nTopics in NMF model:")
@@ -78,6 +75,10 @@ print_top_words(nmf, tfidf_feature_names, n_top_words)
 
 print("Fitting LDA models with tf features, n_samples=%d and n_features=%d..."
       % (n_samples, n_features))
+
+
+
+#LDA模型
 lda = LatentDirichletAllocation(n_components=n_topics, max_iter=5,
                                 learning_method='online', learning_offset=50.,
                                 random_state=0)

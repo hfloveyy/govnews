@@ -37,8 +37,8 @@ def load_xls_data(path = 'data.xlsx'):
     text = [re.sub(r, '', line.strip().replace(u'\u3000', u'').replace('\r','').replace('\n','').replace('\t','')) for line in text ]
     #print(text)
     return text
-text = load_xls_data()
-#load_data()
+#text = load_xls_data()
+text = load_data()
 
 load_stop_words()
 print(text)
